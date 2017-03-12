@@ -52,8 +52,14 @@
         </header>
         
         <div class="pages">
-            <div class="panel" id="main" data-title="Main" data-selected="true">
-                This is main page
+            <div class="panel" id="main" data-title="GESTIÓN DE ALMACÉN" data-selected="true">
+                <div class="jumbotron">
+                    <h1>Gestión de almacén</h1>      
+                    <p>Clientes, productos y pedidos</p>
+                </div>          
+                <div class="contenedor_imagen">
+                    <img class="imagen_portada" src="./assets/imagenes/portada.jpg" alt="Almacen">
+                </div>
             </div>
 <!--PANELES DEL CLIENTE-->
             <!-- PANEL PARA CREAR CLIENTE -->
@@ -263,7 +269,7 @@
                 <div class="pages">
                     <div class="panel active" id="navPage1" data-title="Foobar">
                         <ul class="list">
-                            <li><a href="#main" onclick="$.afui.clearHistory()">Main Page</a></li>
+                            <li><a href="#main" onclick="$.afui.clearHistory()">Portada</a></li>
                             <li><a href="#r_cliente" onclick="$.afui.clearHistory();$.cliente.ClienteReadREST();">Leer clientes</a></li>
                             <li><a href="#c_cliente" onclick="$.afui.clearHistory();$.cliente.ClienteCreateREST();">Crear Cliente</a></li>
                             <li><a href="#u_cliente" onclick="$.afui.clearHistory();$.cliente.ClienteUpdateREST()">Actualizar Cliente</a></li>

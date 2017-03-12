@@ -188,7 +188,7 @@ function addProducto(tipo){
     }
     
     var table = $('<table />').addClass('table table-stripped');
-    table.append($('<thead />').append($('<tr />').append('<th>producto</th>', '<th>cantidad</th>', '<th>disponible</th>', '<th  style="text-align:center">+</th>', '<th style="text-align:center">-</th>')));
+    table.append($('<thead />').append($('<tr />').append('<th>producto</th>', '<th>cantidad</th>', '<th>disponible</th>', '<th  style="width:40px" style="text-align:center">+</th>', '<th style="width:40px" style="text-align:center">-</th>')));
     var tbody = $('<tbody />');
     
     var filaNueva= $('<tr id="filaNuevaPedido">');
@@ -199,19 +199,19 @@ function addProducto(tipo){
     celda = $(
         '<td  id="cantidad_producto_nuevo_pedido">0</td>'+
         '<td id="disponible_producto_nuevo_pedido">'+"cc"+'</td>'+
-        '<td><button onclick="aumentar()" class="boton_cantidad btn-success">+</button></td>'+
-        '<td><button onclick="reducir()" class="boton_cantidad btn-info">-</button></td>');
+        '<td style="width:40px"><button onclick="aumentar()" class="boton_cantidad btn-success">+</button></td>'+
+        '<td style="width:40px"><button onclick="reducir()" class="boton_cantidad btn-info">-</button></td>');
     filaNueva.append(celda);  
     tbody.append(filaNueva);
     
-    var botonOK= $('<button class="btn btn-success" onclick="$.pedido.ComprobarCantidad()">Añadir</button></td>');
-    var botonCancel= $('<button class="btn btn-danger" onclick="addCancelarProducto()">Cancelar</button></td>');
+    var botonOK= $('<button class="btn btn-success btnOK" onclick="$.pedido.ComprobarCantidad()">Añadir</button></td>');
+    var botonCancel= $('<button class="btn btn-danger btnCancel" onclick="addCancelarProducto()">Cancelar</button></td>');
     
     var filaBotones= $('<tr style="text-align:center"/>');
-    celda= $('<td colspan="2">').append(botonOK);
-    filaBotones.append(celda);
+    celda= $('<td colspan="5 ">').append(botonOK);
+  //  filaBotones.append(celda);
     
-    celda= $('<td colspan="2">').append(botonCancel);
+    celda.append(botonCancel);
     filaBotones.append(celda);
     tbody.append(filaBotones);
  
@@ -244,7 +244,7 @@ $.pedido.editarProducto = function(id_detalle_pedido){  //el id que paso es el d
     
     
     var table = $('<table />').addClass('table table-stripped');
-    table.append($('<thead />').append($('<tr />').append('<th>producto</th>', '<th>cantidad</th>', '<th>disponible</th>', '<th  style="text-align:center">+</th>', '<th style="text-align:center">-</th>')));
+    table.append($('<thead />').append($('<tr />').append('<th>producto</th>', '<th>cantidad</th>', '<th>disponible</th>', '<th  style="width:40px" style="text-align:center">+</th>', '<th style="width:40px" style="text-align:center">-</th>')));
     var tbody = $('<tbody />');
     
     var filaNueva= $('<tr id="Edicion_filaNuevaPedido">');
@@ -254,18 +254,18 @@ $.pedido.editarProducto = function(id_detalle_pedido){  //el id que paso es el d
     celda = $(
         '<td id="Edicion_cantidad_producto_nuevo_pedido">'+cantidadPedida+'</td>'+
         '<td id="Edicion_disponible_producto_nuevo_pedido">'+"cc"+'</td>'+
-        '<td><button onclick="Edicion_aumentar()" class="boton_cantidad btn-success">+</button></td>'+
-        '<td><button onclick="Edicion_reducir()" class="boton_cantidad btn-info">-</button></td>');
+        '<td style="width:40px"><button onclick="Edicion_aumentar()" class="boton_cantidad btn-success">+</button></td>'+
+        '<td style="width:40px"><button onclick="Edicion_reducir()" class="boton_cantidad btn-info">-</button></td>');
     filaNueva.append(celda);  
     tbody.append(filaNueva);
     
-    var botonOK= $('<button class="btn btn-success" onclick="$.pedido.Edicion_ComprobarCantidad()">Añadir</button></td>');
-    var botonCancel= $('<button class="btn btn-danger" onclick="addCancelarProducto()">Cancelar</button></td>');
+    var botonOK= $('<button class="btn btn-success btnOK" onclick="$.pedido.Edicion_ComprobarCantidad()">Añadir</button></td>');
+    var botonCancel= $('<button class="btn btn-danger btnCancel" onclick="addCancelarProducto()">Cancelar</button></td>');
     var filaBotones= $('<tr style="text-align:center"/>');
-    celda= $('<td colspan="2">').append(botonOK);
-    filaBotones.append(celda);
+    celda= $('<td colspan="5">').append(botonOK);
+    //filaBotones.append(celda);
     
-    celda= $('<td colspan="2">').append(botonCancel);
+    celda.append(botonCancel);
     filaBotones.append(celda);
     tbody.append(filaBotones);
  
