@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<!--HTML5 doctype-->
+<html>
+
+<head>
+
+    <title>App Framework Kitchen Sink</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <link rel="stylesheet" type="text/css" href="lib/appframework/icons.css" />
+    <link rel="stylesheet" type="text/css" href="lib/appframework/af.ui.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/my_style.css" />
+
+    
+    <script type="text/javascript" charset="utf-8" src="lib/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="lib/fastclick.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="lib/appframework/appframework.ui.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="bootstrap/js/bootstrap.min.js"></script>
+
+        
+    <script src='cordova.js'></script>
+    <script src="js/config.js"> </script>
+    <script src="js/clientes.js"> </script>
+    <script src="js/producto.js"> </script>
+    <script src="js/pedido.js"> </script>
+    <script src="js/detallepedido.js"> </script>
+
+
+
+</head>
+<body>
+    <?php header('Access-Control-Allow-Origin: *'); ?>
+
+    <div id="splashscreen" class='ui-loader heavy'>
+        App Framework
+        <br>
+        <br>
+        <span class='ui-icon ui-icon-loading spin'></span>
+        <h1>Starting app</h1>
+    </div>
+
+    <div class="view splitview">
+        
+        <header>
+            <a class="menuButton" data-left-menu="left" data-transition="cover" style="float:left"></a>
+            <h1>Title</h1>
+        </header>
+        
+        <div class="pages">
+            <div class="panel" id="main" data-title="Main" data-selected="true">
+                This is main page
+            </div>
+<!--PANELES DEL CLIENTE-->
+            <!-- PANEL PARA CREAR CLIENTE -->
+            <div class="panel" id="c_cliente" data-title="Nuevo cliente">
+                <h1>Nuevo Cliente</h1>
+                <div class="container">
+                 <form>
+                  <div class="form-group">
+                    <input type="text" id="c_cl_dni" class="form-control" placeholder="DNI del Cliente" >
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="c_cl_nombre" class="form-control" placeholder="Nombre del Cliente" >
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="c_cl_apellidos" class="form-control" placeholder="Apellidos del Cliente"  >
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="c_cl_direccion" class="form-control" placeholder="Direccion del Cliente"  >
+                  </div>
+                  <div class="form-group">
+                    <button type="button" class="btn btn-danger" onclick="$.cliente.ClienteCreateREST()">Enviar!</button>
+                  </div>
+                </form>
+                </div>
+            </div>
+            <!-- PANEL PARA LEER CLIENTES -->
+            <div class="panel" id="r_cliente" data-title="Lista de Clientes">
+                <div id="r_cliente_listado">
+                     <h1>Lista de Clientes</h1>
+                </div>
+                <div id="r_detalle_pedido" data-title="Pedidos del cliente">
+                    <h1>Lista de pedidos del cliente</h1>
+                </div>
+                <div id="c_nuevo_pedido" data-title="Nuevo pedido">
+                    <h1>Nuevo pedido</h1>
+                </div>
+            </div>
+                        <!-- PANEL PARA LISTAR PEDIDO DE UN CLIENTE-->
+
+            <!-- PANELES PARA ACTUALIZAR SELECCIÓN Y FORMULARIO -->
+            <div class="panel" id="u_cliente" data-title="Actualizar Cliente">
+                <h1>Actualizar Cliente</h1>
+            </div>
+            <div class="panel" id="uf_cliente" data-title="Actualizar Cliente">
+                <h1>Actualizar Cliente</h1>
+                <div class="container">
+                 <form>
+                  <div class="form-group">
+                    <input type="hidden" id="u_cl_dni" class="form-control" placeholder="DNI del Cliente" >
+                  </div>   
+                  <div class="form-group">
+                    <input type="text" id="u_cl_nombre" class="form-control" placeholder="Nombre del Cliente" >
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="u_cl_apellidos" class="form-control" placeholder="Apellidos del Cliente"  >
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="u_cl_direccion" class="form-control" placeholder="Direccion del Cliente"  >
+                  </div>
+                  <div class="form-group">
+                    <button type="button" class="btn btn-danger" onclick="$.cliente.ClienteUpdateREST(1,1)">Enviar!</button>
+                  </div>
+                </form>
+                </div>
+            </div>
+            <!-- PANEL PARA BORRAR EL CLIENTE -->
+            <div class="panel" id="d_cliente" data-title="Delete CLiente">
+                <h1>Delete Cliente</h1>
+            </div>
+            <div class="panel" id="err_cliente" data-title="ERROR">
+                <h1>Panel para la gestión de errores</h1>
+            </div>
+            
+<!--PANELES DEL PRODUCTO-->
+            <!-- PANEL PARA CREAR PRODUCTO -->
+            <div class="panel" id="c_producto" data-title="Nuevo Producto">
+                <h1>Nuevo producto</h1>
+                <div class="container">
+                 <form>
+                  <div class="form-group">
+                    <input type="number" id="c_pr_ref" class="form-control" placeholder="REF del Cliente" >
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="c_pr_nombre" class="form-control" placeholder="Nombre del Producto" >
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="c_pr_descripcion" class="form-control" placeholder="Descripcion del Producto"  >
+                  </div>
+                  <div class="form-group">
+                    <input type="number" id="c_pr_cantidad" class="form-control" placeholder="Cantidad del Producto"  >
+                  </div>
+                  <div class="form-group">
+                    <button type="button" class="btn btn-danger" onclick="$.producto.ProductoCreateREST()">Enviar!</button>
+                  </div>
+                </form>
+                </div>
+            </div>
+            <!-- PANEL PARA LEER PRODUCTOS -->
+            <div class="panel" id="r_producto" data-title="Lista de Productos">
+                <h1>Lista de Productos</h1>
+            </div>
+            <!-- PANELES PARA ACTUALIZAR SELECCIÓN Y FORMULARIO -->
+            <div class="panel" id="u_producto" data-title="Actualizar Producto">
+                <h1>Actualizar Producto</h1>
+            </div>
+            <div class="panel" id="uf_producto" data-title="Actualizar Producto">
+                <h1>Actualizar Producto</h1>
+                <div class="container">
+                 <form>
+                  <div class="form-group">
+                    <input type="hidden" id="u_pr_ref" class="form-control" placeholder="Ref del producto" >
+                  </div>   
+                  <div class="form-group">
+                    <input type="text" id="u_pr_nombre" class="form-control" placeholder="Nombre del producto" >
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="u_pr_descripcion" class="form-control" placeholder="Descripción del producto"  >
+                  </div>
+                  <div class="form-group">
+                    <input type="number" id="u_pr_cantidad" class="form-control" placeholder="Cantidad de producto"  >
+                  </div>
+                  <div class="form-group">
+                    <button type="button" class="btn btn-danger" onclick="$.producto.ProductoUpdateREST(1,1)">Enviar!</button>
+                  </div>
+                </form>
+                </div>
+            </div>
+            <!-- PANEL PARA BORRAR EL PRODUCTO -->
+            <div class="panel" id="d_producto" data-title="Borrar Producto">
+                <h1>Borrar Producto</h1>
+            </div>
+            <div class="panel" id="err_producto" data-title="ERROR">
+                <h1>Panel para la gestión de errores</h1>
+            </div>
+            ////////////////////////////////////////////////////////////////////////////////////
+<!--PANELES DEL PEDIDO-->
+            <!-- PANEL PARA CREAR PEDIDO -->
+            <div class="panel" id="c_pedido" data-title="Nuevo Pedido">
+                <h1>Nuevo Pedido</h1>
+                <div class="container">
+                 <form>
+                  <div class="form-group">
+                    <input type="text" id="c_cl_dni" class="form-control" placeholder="DNI del Cliente" >
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="c_cl_nombre" class="form-control" placeholder="Nombre del Cliente" >
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="c_cl_apellidos" class="form-control" placeholder="Apellidos del Cliente"  >
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="c_cl_direccion" class="form-control" placeholder="Direccion del Cliente"  >
+                  </div>
+                  <div class="form-group">
+                    <button type="button" class="btn btn-danger" onclick="$.cliente.ClienteCreateREST()">Enviar!</button>
+                  </div>
+                </form>
+                </div>
+            </div>
+            <!-- PANEL PARA LISTAR PEDIDO -->
+            <div class="panel" id="r_pedido" data-title="Lista de pedidos">
+                <h1>Lista de pedidos</h1>
+            </div>
+            
+            <!-- PANELES PARA ACTUALIZAR SELECCIÓN Y FORMULARIO -->
+            <div class="panel" id="u_cliente" data-title="Actualizar Cliente">
+                <h1>Actualizar Cliente</h1>
+            </div>
+            <div class="panel" id="uf_cliente" data-title="Actualizar Cliente">
+                <h1>Actualizar Cliente</h1>
+                <div class="container">
+                 <form>
+                  <div class="form-group">
+                    <input type="hidden" id="u_cl_dni" class="form-control" placeholder="DNI del Cliente" >
+                  </div>   
+                  <div class="form-group">
+                    <input type="text" id="u_cl_nombre" class="form-control" placeholder="Nombre del Cliente" >
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="u_cl_apellidos" class="form-control" placeholder="Apellidos del Cliente"  >
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="u_cl_direccion" class="form-control" placeholder="Direccion del Cliente"  >
+                  </div>
+                  <div class="form-group">
+                    <button type="button" class="btn btn-danger" onclick="$.cliente.ClienteUpdateREST(1,1)">Enviar!</button>
+                  </div>
+                </form>
+                </div>
+            </div>
+            <!-- PANEL PARA BORRAR EL CLIENTE -->
+            <div class="panel" id="d_cliente" data-title="Delete CLiente">
+                <h1>Delete Cliente</h1>
+            </div>
+            <div class="panel" id="err_cliente" data-title="ERROR">
+                <h1>Panel para la gestión de errores</h1>
+            </div>
+                        
+            
+        </div>
+
+        <nav id="left">
+            <div class="view active">
+                <header>
+                    <h1>Menú</h1>
+                </header>
+                <div class="pages">
+                    <div class="panel active" id="navPage1" data-title="Foobar">
+                        <ul class="list">
+                            <li><a href="#main" onclick="$.afui.clearHistory()">Main Page</a></li>
+                            <li><a href="#r_cliente" onclick="$.afui.clearHistory();$.cliente.ClienteReadREST();">Leer clientes</a></li>
+                            <li><a href="#c_cliente" onclick="$.afui.clearHistory();$.cliente.ClienteCreateREST();">Crear Cliente</a></li>
+                            <li><a href="#u_cliente" onclick="$.afui.clearHistory();$.cliente.ClienteUpdateREST()">Actualizar Cliente</a></li>
+                            <li><a href="#d_cliente" onclick="$.afui.clearHistory();$.cliente.ClienteDeleteREST()">Borrar Cliente</a></li>
+                            
+                            <li><a href="#r_producto" onclick="$.afui.clearHistory();$.producto.ProductoReadREST();">Leer producto</a></li>
+                            <li><a href="#c_producto" onclick="$.afui.clearHistory();$.producto.ProductoCreateREST();">Crear producto</a></li>
+                            <li><a href="#u_producto" onclick="$.afui.clearHistory();$.producto.ProductoUpdateREST()">Actualizar producto</a></li>
+                            <li><a href="#d_producto" onclick="$.afui.clearHistory();$.producto.ProductoDeleteREST()">Borrar producto</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    </div>
+</body>
+
+</html>

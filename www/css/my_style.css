@@ -1,0 +1,50 @@
+h1{
+    margin: 1px;
+/*    padding: 1px;*/
+}
+
+.fila_pedido{
+    background: #e9f6fd;
+    text-align: center;
+
+
+}
+
+
+.cabecera1_pedidos_cliente{
+    background: #d3eefb;
+    text-align: center;
+}
+
+#r_detalle_pedido{
+    display: none;
+}
+
+#c_nuevo_pedido{
+    display: none;
+}
+
+#cantidad_producto_nuevo_pedido, #disponible_producto_nuevo_pedido{
+    width: 60px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px;
+    font-weight: bold;
+   
+
+
+  
+}
+
+.boton_cantidad{
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    box-sizing: border-box;
+    margin-right: 1px;
+    margin-left: 1px;
+}
