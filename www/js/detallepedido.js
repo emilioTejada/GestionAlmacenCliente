@@ -138,5 +138,50 @@ $.detalle_pedido.Delete= function(event,id_detalle_pedido, id_pedido){
         error: function(jqXHR, textStatus, errorThrown){
             $.cliente.error('Error: DetallePedido Delete','No ha sido posible borrar el Detalle Pedido. Compruebe su conexión.');
         }
-     })
+     }) 
 }
+
+
+$.detalle_pedido.detallePedidoUpdate = function(id_detalle_pedido){
+   // var id_detalle_pedido= $('#Edicion_Id_Producto').html();
+    var id_pedido= $('#id_pedido').html();
+    var ref_producto =$('#fila_detalle_pedido_'+id_detalle_pedido).children('.ref_producto').html();
+    var cantidad =$('#Edicion_cantidad_producto_nuevo_pedido').html();
+    var cantidad_anterior = $('#fila_detalle_pedido_'+id_detalle_pedido).children('.cantidad').html();
+    //var disponible_anterior = $('#Edicion_disponible_producto_nuevo_pedido').html();
+    var fecha_pedido= $('#fecha_pedido').html();
+    var variacion= cantidad_anterior-cantidad;
+
+    
+       var detallepedido = {
+        'id' : id_detalle_pedido,
+        'idPedido' : {
+                "dniCliente": $.datosPersona,
+                "fecha": fecha_pedido,
+                "id": id_pedido
+        },
+        'refProducto': $.datosProducto,
+        'cantidad': parseInt(cantidad)
+    };
+    
+    $.ajax({
+            url: $.producto.HOST+$.producto.URL+this.TABLA+"/"+id_detalle_pedido,
+            type: 'PUT',
+            dataType: 'json',
+            contentType: "application/json",
+            data: JSON.stringify(detallepedido),
+            success: function(result,status,jqXHR ) {
+               // probamos que se ha actualizado cargando de nuevo la lista -no es necesario-
+               //$.producto.ProductoReadREST();
+                $.producto.ProductoSumar_cantidad(ref_producto,variacion);
+                $.detalle_pedido.DetallePedidoReadREST(id_pedido);
+            },
+            error: function(jqXHR, textStatus, errorThrown){
+                $.producto.error('Error: Producto Update','No ha sido posible actualizar el producto. Compruebe su conexión.');
+            }
+        });
+    
+    
+}
+
+

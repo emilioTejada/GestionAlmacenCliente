@@ -259,7 +259,7 @@ $.pedido.editarProducto = function(id_detalle_pedido){  //el id que paso es el d
     filaNueva.append(celda);  
     tbody.append(filaNueva);
     
-    var botonOK= $('<button class="btn btn-success btnOK" onclick="$.pedido.Edicion_ComprobarCantidad()">Añadir</button></td>');
+    var botonOK= $('<button class="btn btn-success btnOK" onclick="$.pedido.Edicion_ComprobarCantidad('+id_detalle_pedido+')">Guardar</button></td>');
     var botonCancel= $('<button class="btn btn-danger btnCancel" onclick="addCancelarProducto()">Cancelar</button></td>');
     var filaBotones= $('<tr style="text-align:center"/>');
     celda= $('<td colspan="5">').append(botonOK);
@@ -316,10 +316,10 @@ function reducir(){
 
 
 /**FUNCIONES AUXILIARES PARA LA EDICIÓN DE UN PRODUCTO DEL PEDIDO**/
-$.pedido.Edicion_ComprobarCantidad = function (){
+$.pedido.Edicion_ComprobarCantidad = function (id_detalle_pedido){
     
     if (parseInt($('#Edicion_cantidad_producto_nuevo_pedido').html())>0)
-        $.detalle_pedido.detallePedidoUpdate();     ////////////////////////////////////////////////////////hacer
+        $.detalle_pedido.detallePedidoUpdate(id_detalle_pedido);     ////////////////////////////////////////////////////////hacer
     else
         alert("Debes elegir alguna unidad");
 }
